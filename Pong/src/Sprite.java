@@ -34,6 +34,7 @@ public void setXPosition(int newX, int panelWidth) {
 			}
 	}
 public void setYPosition(int newY, int panelHeight) {
+	
 	yPosition = newY;
 	if(yPosition < 0) {
 		yPosition = 0;
