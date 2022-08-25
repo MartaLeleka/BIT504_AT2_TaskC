@@ -16,14 +16,14 @@ public class PongPannel extends JPanel implements ActionListener, KeyListener
 {
 	private final static Color BACKGROUND_COLOR = Color.BLACK;
 	private final static int TIMER_DELAY = 5;
-	private final static int BALL_MOVEMENT_SPEED = 2;
+	private final static int BALL_MOVEMENT_SPEED = 3;
 	Ball ball;
 	Paddle paddle1,paddle2;
 	GameState gameState = GameState.Initialising;
 	
 	// score
 	
-	private final static int POINTS_TO_WIN = 5;
+	private final static int POINTS_TO_WIN = 10;
 	int player1Score = 0, player2Score = 0;
 	Player gameWinner;
 	
@@ -124,6 +124,7 @@ public class PongPannel extends JPanel implements ActionListener, KeyListener
 	public void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	paintDottedLine(g);
+	
 	if(gameState != GameState.Initialising) {
 		paintSprite(g, ball);
 		paintSprite(g, paddle1);
@@ -152,6 +153,7 @@ public class PongPannel extends JPanel implements ActionListener, KeyListener
 			ball.setxVelocity(-ball.getxVelocity());
 			addScore(Player.Two);
 			resetBall();
+			
 			} else if(ball.getxPosition() >= getWidth() - ball.getWidth()) {
 				// Hit right side of screen
 				ball.setxVelocity(-ball.getxVelocity());
@@ -182,9 +184,11 @@ public class PongPannel extends JPanel implements ActionListener, KeyListener
 }
 		
 		private void checkWin() {
+			
 			if (player1Score>= POINTS_TO_WIN) {
 				gameWinner = Player.One;
 				gameState = GameState.GameOver;
+				
 			}else if (player2Score>= POINTS_TO_WIN) {
 				gameWinner = Player.Two;
 				gameState = GameState.GameOver;
